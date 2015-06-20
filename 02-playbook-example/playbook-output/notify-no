@@ -1,0 +1,41 @@
+
+PLAY [all] ******************************************************************** 
+
+GATHERING FACTS *************************************************************** 
+<test.example.net> ESTABLISH CONNECTION FOR USER: gulcin.yildirim on PORT 22 TO test.example.net
+<test.example.net> REMOTE_MODULE setup
+<test.example.net> EXEC /bin/sh -c 'mkdir -p $HOME/.ansible/tmp/ansible-tmp-1434795671.4-250314625914935 && chmod a+rx $HOME/.ansible/tmp/ansible-tmp-1434795671.4-250314625914935 && echo $HOME/.ansible/tmp/ansible-tmp-1434795671.4-250314625914935'
+<test.example.net> PUT /var/folders/15/l702p40n7yg8bjklp65jntdw0000gn/T/tmpT4U5y1 TO /home/gulcin.yildirim/.ansible/tmp/ansible-tmp-1434795671.4-250314625914935/setup
+<test.example.net> EXEC /bin/sh -c 'LANG=en_US.UTF-8 LC_CTYPE=en_US.UTF-8 /usr/bin/python /home/gulcin.yildirim/.ansible/tmp/ansible-tmp-1434795671.4-250314625914935/setup; rm -rf /home/gulcin.yildirim/.ansible/tmp/ansible-tmp-1434795671.4-250314625914935/ >/dev/null 2>&1'
+ok: [test.example.net]
+
+TASK: [Install git] *********************************************************** 
+<test.example.net> ESTABLISH CONNECTION FOR USER: gulcin.yildirim on PORT 22 TO test.example.net
+<test.example.net> REMOTE_MODULE apt name=git state=present
+<test.example.net> EXEC /bin/sh -c 'mkdir -p $HOME/.ansible/tmp/ansible-tmp-1434795677.18-264075279814004 && chmod a+rx $HOME/.ansible/tmp/ansible-tmp-1434795677.18-264075279814004 && echo $HOME/.ansible/tmp/ansible-tmp-1434795677.18-264075279814004'
+<test.example.net> PUT /var/folders/15/l702p40n7yg8bjklp65jntdw0000gn/T/tmplKMe_f TO /home/gulcin.yildirim/.ansible/tmp/ansible-tmp-1434795677.18-264075279814004/apt
+<test.example.net> EXEC /bin/sh -c 'sudo -k && sudo -H -S -p "[sudo via ansible, key=qtboimhsakaioskgsysoqhosdlkmplpl] password: " -u root /bin/sh -c '"'"'echo BECOME-SUCCESS-qtboimhsakaioskgsysoqhosdlkmplpl; LANG=en_US.UTF-8 LC_CTYPE=en_US.UTF-8 /usr/bin/python /home/gulcin.yildirim/.ansible/tmp/ansible-tmp-1434795677.18-264075279814004/apt; rm -rf /home/gulcin.yildirim/.ansible/tmp/ansible-tmp-1434795677.18-264075279814004/ >/dev/null 2>&1'"'"''
+ok: [test.example.net] => {"changed": false}
+
+TASK: [Check if repo exists] ************************************************** 
+<test.example.net> ESTABLISH CONNECTION FOR USER: gulcin.yildirim on PORT 22 TO test.example.net
+<test.example.net> REMOTE_MODULE stat path=ansible-playground
+<test.example.net> EXEC /bin/sh -c 'mkdir -p $HOME/.ansible/tmp/ansible-tmp-1434795681.02-15890810756847 && chmod a+rx $HOME/.ansible/tmp/ansible-tmp-1434795681.02-15890810756847 && echo $HOME/.ansible/tmp/ansible-tmp-1434795681.02-15890810756847'
+<test.example.net> PUT /var/folders/15/l702p40n7yg8bjklp65jntdw0000gn/T/tmpPh5U77 TO /home/gulcin.yildirim/.ansible/tmp/ansible-tmp-1434795681.02-15890810756847/stat
+<test.example.net> EXEC /bin/sh -c 'LANG=en_US.UTF-8 LC_CTYPE=en_US.UTF-8 /usr/bin/python /home/gulcin.yildirim/.ansible/tmp/ansible-tmp-1434795681.02-15890810756847/stat; rm -rf /home/gulcin.yildirim/.ansible/tmp/ansible-tmp-1434795681.02-15890810756847/ >/dev/null 2>&1'
+ok: [test.example.net] => {"changed": false, "stat": {"atime": 1434795436.4142678, "ctime": 1434795581.158004, "dev": 65024, "exists": true, "gid": 2127, "gr_name": "Gulcin Yildirim", "inode": 21627044, "isblk": false, "ischr": false, "isdir": true, "isfifo": false, "isgid": false, "islnk": false, "isreg": false, "issock": false, "isuid": false, "mode": "0755", "mtime": 1434795581.158004, "nlink": 4, "path": "ansible-playground", "pw_name": "gulcin.yildirim", "rgrp": true, "roth": true, "rusr": true, "size": 4096, "uid": 2127, "wgrp": false, "woth": false, "wusr": true, "xgrp": true, "xoth": true, "xusr": true}}
+
+TASK: [Clone repo] ************************************************************ 
+skipping: [test.example.net]
+
+TASK: [Update repo] *********************************************************** 
+<test.example.net> ESTABLISH CONNECTION FOR USER: gulcin.yildirim on PORT 22 TO test.example.net
+<test.example.net> REMOTE_MODULE git repo=https://github.com/gulcin/ansible-playground.git dest=ansible-playground update=yes
+<test.example.net> EXEC /bin/sh -c 'mkdir -p $HOME/.ansible/tmp/ansible-tmp-1434795686.22-22375167942783 && chmod a+rx $HOME/.ansible/tmp/ansible-tmp-1434795686.22-22375167942783 && echo $HOME/.ansible/tmp/ansible-tmp-1434795686.22-22375167942783'
+<test.example.net> PUT /var/folders/15/l702p40n7yg8bjklp65jntdw0000gn/T/tmpiyOe93 TO /home/gulcin.yildirim/.ansible/tmp/ansible-tmp-1434795686.22-22375167942783/git
+<test.example.net> EXEC /bin/sh -c 'LANG=en_US.UTF-8 LC_CTYPE=en_US.UTF-8 /usr/bin/python /home/gulcin.yildirim/.ansible/tmp/ansible-tmp-1434795686.22-22375167942783/git; rm -rf /home/gulcin.yildirim/.ansible/tmp/ansible-tmp-1434795686.22-22375167942783/ >/dev/null 2>&1'
+ok: [test.example.net] => {"after": "b7b90c2da942bab8320390b0226684ef93d7b0c9", "before": "b7b90c2da942bab8320390b0226684ef93d7b0c9", "changed": false}
+
+PLAY RECAP ******************************************************************** 
+test.example.net         : ok=4    changed=0    unreachable=0    failed=0   
+
