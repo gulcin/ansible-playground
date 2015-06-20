@@ -29,7 +29,7 @@ This example provides a simple Ansible playbook. Tasks and handlers in the playb
   - updates the workspace if this repo is already cloned
   - triggers update message if the workspace is updated.
 
-Example playbook outputs are located under the 02-playbook-example/playbook-output folder.
+Example playbook outputs are located under the `02-playbook-example/playbook-output` folder.
 
 The playbook is invoked using the command below:
 
