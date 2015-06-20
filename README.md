@@ -19,4 +19,20 @@ This example shows how to invoke ansible via command line.
     USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
     gulcin.y pts/0    test.example.net 23:20   59.00s  0.04s  0.04s top
 
+Playbook Example
+----------------
+
+This example provides a simple Ansible playbook. Tasks and handlers in the playbook performs the following:
+
+  - first ensures that git is installed
+  - clones this repo if a workspace does not exist
+  - updates the workspace if this repo is already cloned
+  - triggers update message if the workspace is updated.
+
+Example playbook outputs are located under the 02-playbook-example/playbook-output folder.
+
+The playbook is invoked using the command below:
+
+    $ cd 02-playbook-example/
+    $ ansible-playbook main.yml -i hosts.yml -K -k -vvv
 
