@@ -1,0 +1,25 @@
+- hosts: all
+  remote_user: gulcin.yildirim
+  tasks:
+    - name: Install git
+      apt: name=git state=present
+      sudo: yes
+
+    - name: Check if repo exists
+      stat: path=ansible-playground
+      register: repostat
+    
+    - name: Clone repo
+      raw: git clone https://github.com/gulcin/ansible-playground.git
+      when: repostat.stat.exists!=true
+
+    - name: Update repo
+      git: repo=https://github.com/gulcin/ansible-playground.git dest=ansible-playground update=yes 
+      when: repostat.stat.exists 
+      notify:
+        - Report update
+    
+  handlers:
+    - name: Report update
+      debug: msg="Repo is updated!" 
+
