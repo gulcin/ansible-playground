@@ -10,11 +10,15 @@
       when: version.stdout < '2.7.9'
       sudo: yes
 
+    - name: Check the existence of the Python module installation folder
+      stat: path=/usr/local/lib/python2.7/dist-packages
+      register: modulefolder
+
     - name: Find if any version of the specific file exists
       # find: paths="/usr/local/lib/python2.7/dist-packages/" patterns="backports.ssl_match_hostname-*.egg-info"
       # Above module will work by Ansible 2.0
-      command: find /usr/local/lib/python2.7/dist-packages/ -name "backports.ssl_match_hostname-*.egg-info"
-      when: version.stdout < '2.7.9'
+      command: find /usr/local/lib/python2.7/dist-packages -name "backports.ssl_match_hostname-*.egg-info"
+      when: modulefolder.stat.exists
       register: files
 
     - name: Install backports.ssl_match_hostname
@@ -23,5 +27,5 @@
       # see: https://github.com/ansible/ansible-modules-core/pull/513
       # args:
       #   creates: /usr/local/lib/python2.7/dist-packages/backports.ssl_match_hostname-*.egg-info
-      when: files.stdout == ''
+      when: modulefolder.stat.exists!=true or files.stdout == ''
       sudo: yes
