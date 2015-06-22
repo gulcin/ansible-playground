@@ -36,3 +36,23 @@ The playbook is invoked using the command below:
     $ cd 02-playbook-example/
     $ ansible-playbook main.yml -i hosts.yml -K -k -vvv
 
+Conditional Playbook Example
+----------------------------
+
+This example provides a conditional Ansible playbook. Tasks and handlers in the playbook performs the following:
+
+  - finds installed python version
+  - installs python-pip if python version < 2.7.9
+  - detects if ssl_match_hostname module is installed
+  - installs ssl_match_hostname package if it is missing
+
+Example playbook outputs are located under the `03-playbook-comparison-example/playbook-output` folder.
+
+The playbook is invoked using the command below:
+
+    $ cd 03-playbook-comparison-example/
+    $ ansible-playbook main.yml -i hosts.ini -K -k -vvv
+
+
+
+
