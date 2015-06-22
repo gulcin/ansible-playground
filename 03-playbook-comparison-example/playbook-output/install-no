@@ -1,0 +1,49 @@
+
+PLAY [all] ******************************************************************** 
+
+GATHERING FACTS *************************************************************** 
+<test.example.net> ESTABLISH CONNECTION FOR USER: gulcin.yildirim on PORT 22 TO test.example.net
+<test.example.net> REMOTE_MODULE setup
+<test.example.net> EXEC /bin/sh -c 'mkdir -p $HOME/.ansible/tmp/ansible-tmp-1435003919.66-255922882293650 && chmod a+rx $HOME/.ansible/tmp/ansible-tmp-1435003919.66-255922882293650 && echo $HOME/.ansible/tmp/ansible-tmp-1435003919.66-255922882293650'
+<test.example.net> PUT /var/folders/15/l702p40n7yg8bjklp65jntdw0000gn/T/tmp9dwKBe TO /home/gulcin.yildirim/.ansible/tmp/ansible-tmp-1435003919.66-255922882293650/setup
+<test.example.net> EXEC /bin/sh -c 'LANG=en_US.UTF-8 LC_CTYPE=en_US.UTF-8 /usr/bin/python /home/gulcin.yildirim/.ansible/tmp/ansible-tmp-1435003919.66-255922882293650/setup; rm -rf /home/gulcin.yildirim/.ansible/tmp/ansible-tmp-1435003919.66-255922882293650/ >/dev/null 2>&1'
+ok: [test.example.net]
+
+TASK: [Obtain Python version] ************************************************* 
+<test.example.net> ESTABLISH CONNECTION FOR USER: gulcin.yildirim on PORT 22 TO test.example.net
+<test.example.net> REMOTE_MODULE command dpkg-query -W -f'${Version}\n' python | cut -d"-" -f1 #USE_SHELL
+<test.example.net> EXEC /bin/sh -c 'mkdir -p $HOME/.ansible/tmp/ansible-tmp-1435003922.79-65862546358010 && chmod a+rx $HOME/.ansible/tmp/ansible-tmp-1435003922.79-65862546358010 && echo $HOME/.ansible/tmp/ansible-tmp-1435003922.79-65862546358010'
+<test.example.net> PUT /var/folders/15/l702p40n7yg8bjklp65jntdw0000gn/T/tmpyauXel TO /home/gulcin.yildirim/.ansible/tmp/ansible-tmp-1435003922.79-65862546358010/command
+<test.example.net> EXEC /bin/sh -c 'LANG=en_US.UTF-8 LC_CTYPE=en_US.UTF-8 /usr/bin/python /home/gulcin.yildirim/.ansible/tmp/ansible-tmp-1435003922.79-65862546358010/command; rm -rf /home/gulcin.yildirim/.ansible/tmp/ansible-tmp-1435003922.79-65862546358010/ >/dev/null 2>&1'
+changed: [test.example.net] => {"changed": true, "cmd": "dpkg-query -W -f'${Version}\\n' python | cut -d\"-\" -f1", "delta": "0:00:00.012126", "end": "2015-06-22 23:12:03.962686", "rc": 0, "start": "2015-06-22 23:12:03.950560", "stderr": "", "stdout": "2.7.3", "warnings": []}
+
+TASK: [Install pip] *********************************************************** 
+<test.example.net> ESTABLISH CONNECTION FOR USER: gulcin.yildirim on PORT 22 TO test.example.net
+<test.example.net> REMOTE_MODULE apt name=python-pip state=latest
+<test.example.net> EXEC /bin/sh -c 'mkdir -p $HOME/.ansible/tmp/ansible-tmp-1435003925.51-162772593117359 && chmod a+rx $HOME/.ansible/tmp/ansible-tmp-1435003925.51-162772593117359 && echo $HOME/.ansible/tmp/ansible-tmp-1435003925.51-162772593117359'
+<test.example.net> PUT /var/folders/15/l702p40n7yg8bjklp65jntdw0000gn/T/tmpFU0eWi TO /home/gulcin.yildirim/.ansible/tmp/ansible-tmp-1435003925.51-162772593117359/apt
+<test.example.net> EXEC /bin/sh -c 'sudo -k && sudo -H -S -p "[sudo via ansible, key=azympjwcjvoiscmcclvaanpdcvkafafr] password: " -u root /bin/sh -c '"'"'echo BECOME-SUCCESS-azympjwcjvoiscmcclvaanpdcvkafafr; LANG=en_US.UTF-8 LC_CTYPE=en_US.UTF-8 /usr/bin/python /home/gulcin.yildirim/.ansible/tmp/ansible-tmp-1435003925.51-162772593117359/apt; rm -rf /home/gulcin.yildirim/.ansible/tmp/ansible-tmp-1435003925.51-162772593117359/ >/dev/null 2>&1'"'"''
+ok: [test.example.net] => {"changed": false}
+
+TASK: [Check the existence of the Python module installation folder] ********** 
+<test.example.net> ESTABLISH CONNECTION FOR USER: gulcin.yildirim on PORT 22 TO test.example.net
+<test.example.net> REMOTE_MODULE stat path=/usr/local/lib/python2.7/dist-packages
+<test.example.net> EXEC /bin/sh -c 'mkdir -p $HOME/.ansible/tmp/ansible-tmp-1435003928.33-189858851087997 && chmod a+rx $HOME/.ansible/tmp/ansible-tmp-1435003928.33-189858851087997 && echo $HOME/.ansible/tmp/ansible-tmp-1435003928.33-189858851087997'
+<test.example.net> PUT /var/folders/15/l702p40n7yg8bjklp65jntdw0000gn/T/tmprfXHcr TO /home/gulcin.yildirim/.ansible/tmp/ansible-tmp-1435003928.33-189858851087997/stat
+<test.example.net> EXEC /bin/sh -c 'LANG=en_US.UTF-8 LC_CTYPE=en_US.UTF-8 /usr/bin/python /home/gulcin.yildirim/.ansible/tmp/ansible-tmp-1435003928.33-189858851087997/stat; rm -rf /home/gulcin.yildirim/.ansible/tmp/ansible-tmp-1435003928.33-189858851087997/ >/dev/null 2>&1'
+ok: [test.example.net] => {"changed": false, "stat": {"atime": 1435003920.8136668, "ctime": 1435003904.828823, "dev": 65024, "exists": true, "gid": 50, "gr_name": "staff", "inode": 15600748, "isblk": false, "ischr": false, "isdir": true, "isfifo": false, "isgid": true, "islnk": false, "isreg": false, "issock": false, "isuid": false, "mode": "2755", "mtime": 1435003904.828823, "nlink": 4, "path": "/usr/local/lib/python2.7/dist-packages", "pw_name": "root", "rgrp": true, "roth": true, "rusr": true, "size": 4096, "uid": 0, "wgrp": false, "woth": false, "wusr": true, "xgrp": true, "xoth": true, "xusr": true}}
+
+TASK: [Find if any version of the specific file exists] *********************** 
+<test.example.net> ESTABLISH CONNECTION FOR USER: gulcin.yildirim on PORT 22 TO test.example.net
+<test.example.net> REMOTE_MODULE command find /usr/local/lib/python2.7/dist-packages -name "backports.ssl_match_hostname-*.egg-info"
+<test.example.net> EXEC /bin/sh -c 'mkdir -p $HOME/.ansible/tmp/ansible-tmp-1435003930.55-1239359821546 && chmod a+rx $HOME/.ansible/tmp/ansible-tmp-1435003930.55-1239359821546 && echo $HOME/.ansible/tmp/ansible-tmp-1435003930.55-1239359821546'
+<test.example.net> PUT /var/folders/15/l702p40n7yg8bjklp65jntdw0000gn/T/tmpvwzI8v TO /home/gulcin.yildirim/.ansible/tmp/ansible-tmp-1435003930.55-1239359821546/command
+<test.example.net> EXEC /bin/sh -c 'LANG=en_US.UTF-8 LC_CTYPE=en_US.UTF-8 /usr/bin/python /home/gulcin.yildirim/.ansible/tmp/ansible-tmp-1435003930.55-1239359821546/command; rm -rf /home/gulcin.yildirim/.ansible/tmp/ansible-tmp-1435003930.55-1239359821546/ >/dev/null 2>&1'
+changed: [test.example.net] => {"changed": true, "cmd": ["find", "/usr/local/lib/python2.7/dist-packages", "-name", "backports.ssl_match_hostname-*.egg-info"], "delta": "0:00:00.011414", "end": "2015-06-22 23:12:11.252034", "rc": 0, "start": "2015-06-22 23:12:11.240620", "stderr": "", "stdout": "/usr/local/lib/python2.7/dist-packages/backports.ssl_match_hostname-3.4.0.2.egg-info", "warnings": []}
+
+TASK: [Install backports.ssl_match_hostname] ********************************** 
+skipping: [test.example.net]
+
+PLAY RECAP ******************************************************************** 
+test.example.net         : ok=5    changed=2    unreachable=0    failed=0   
+
