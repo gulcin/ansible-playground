@@ -1,4 +1,4 @@
-Istalling ansible on mac
+Installing Ansible on mac
 =========================
 
     sudo easy_install pip
