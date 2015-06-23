@@ -1,4 +1,4 @@
-Installing ansible on mac
+Istalling ansible on mac
 =========================
 
     sudo easy_install pip
@@ -7,8 +7,8 @@ Installing ansible on mac
 Examples
 ========
 
-Bash Example
-------------
+Bash Task
+---------
 
 This example shows how to invoke ansible via command line.
 
@@ -19,8 +19,8 @@ This example shows how to invoke ansible via command line.
     USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
     gulcin.y pts/0    test.example.net 23:20   59.00s  0.04s  0.04s top
 
-Playbook Example
-----------------
+Git Playbook
+------------
 
 This example provides a simple Ansible playbook. Tasks and handlers in the playbook performs the following:
 
@@ -29,15 +29,15 @@ This example provides a simple Ansible playbook. Tasks and handlers in the playb
   - updates the workspace if this repo is already cloned
   - triggers update message if the workspace is updated.
 
-Example playbook outputs are located under the `02-playbook-example/playbook-output` folder.
+Example playbook outputs are located under the `02-git-playbook/playbook-output` folder.
 
 The playbook is invoked using the command below:
 
-    $ cd 02-playbook-example/
+    $ cd 02-git-playbook/
     $ ansible-playbook main.yml -i hosts.yml -K -k -vvv
 
-Conditional Playbook Example
-----------------------------
+Dpkg Comparison Playbook
+------------------------
 
 This example provides a conditional Ansible playbook. Tasks and handlers in the playbook performs the following:
 
@@ -46,13 +46,11 @@ This example provides a conditional Ansible playbook. Tasks and handlers in the 
   - detects if ssl_match_hostname module is installed
   - installs ssl_match_hostname package if it is missing
 
-Example playbook outputs are located under the `03-playbook-comparison-example/playbook-output` folder.
+Example playbook outputs are located under the `03-dpkg-comparison-playbook/playbook-output` folder.
 
 The playbook is invoked using the command below:
 
-    $ cd 03-playbook-comparison-example/
+    $ cd 03-dpkg-comparison-playbook/
     $ ansible-playbook main.yml -i hosts.ini -K -k -vvv
-
-
 
 
