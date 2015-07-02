@@ -1,0 +1,31 @@
+- hosts: all
+  remote_user: gulcin.yildirim
+  tasks:
+    - name: Obtain Python version
+      shell: dpkg-query -W -f'${Version}\n' python | cut -d"-" -f1
+      register: version
+
+    - name: Install pip
+      apt: name=python-pip state=latest
+      when: version.stdout < '2.7.9'
+      sudo: yes
+
+    - name: Check the existence of the Python module installation folder
+      stat: path=/usr/local/lib/python2.7/dist-packages
+      register: modulefolder
+
+    - name: Find if any version of the specific file exists
+      # find: paths="/usr/local/lib/python2.7/dist-packages/" patterns="backports.ssl_match_hostname-*.egg-info"
+      # Above module will work by Ansible 2.0
+      command: find /usr/local/lib/python2.7/dist-packages -name "backports.ssl_match_hostname-*.egg-info"
+      when: modulefolder.stat.exists
+      register: files
+
+    - name: Install backports.ssl_match_hostname
+      command: pip install backports.ssl_match_hostname
+      # Ansible 2.0 will support globbing below so we won't have to rely on the previous task
+      # see: https://github.com/ansible/ansible-modules-core/pull/513
+      # args:
+      #   creates: /usr/local/lib/python2.7/dist-packages/backports.ssl_match_hostname-*.egg-info
+      when: modulefolder.stat.exists!=true or files.stdout == ''
+      sudo: yes
