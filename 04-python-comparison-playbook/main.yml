@@ -2,7 +2,7 @@
   remote_user: gulcin.yildirim
   tasks:
     - name: Obtain if Python version is older                                                                         
-      command: python -c 'import sys; print sys.version_info[:3] < (2, 7, 9)'                                         
+      command: python -c 'import sys; print sys.version_info[:3] <= (2, 7, 9)'                                         
       register: version                                                                                               
                                                                                                                       
     - name: Install pip                                                                                               
