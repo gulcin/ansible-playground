@@ -1,13 +1,13 @@
 - hosts: all
   remote_user: gulcin.yildirim
   tasks:
-    - name: Obtain Python version
-      shell: dpkg-query -W -f'${Version}\n' python | cut -d"-" -f1
-      register: version
-
-    - name: Install pip
-      apt: name=python-pip state=latest
-      when: version.stdout < '2.7.9'
+    - name: Obtain if Python version is older                                                                         
+      command: python -c 'import sys; print sys.version_info[:3] < (2, 7, 9)'                                         
+      register: version                                                                                               
+                                                                                                                      
+    - name: Install pip                                                                                               
+      apt: name=python-pip state=latest                                                                               
+      when: version.stdout='True'                                                                            
       sudo: yes
 
     - name: Check the existence of the Python module installation folder
